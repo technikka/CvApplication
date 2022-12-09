@@ -1,4 +1,5 @@
 import { Component } from "react";
+import uniqid from "uniqid";
 
 class EducationSectionForm extends Component {
   constructor(props) {
@@ -6,6 +7,7 @@ class EducationSectionForm extends Component {
 
     this.state = {
       item: {
+        id: uniqid(),
         school: "",
         subject: "",
         date: "",
@@ -18,6 +20,7 @@ class EducationSectionForm extends Component {
       case "school":
         this.setState({
           item: {
+            id: this.state.item.id,
             school: e.target.value,
             subject: this.state.item.subject,
             date: this.state.item.date,
@@ -27,6 +30,7 @@ class EducationSectionForm extends Component {
       case "subject":
         this.setState({
           item: {
+            id: this.state.item.id,
             school: this.state.item.school,
             subject: e.target.value,
             date: this.state.item.date,
@@ -36,6 +40,7 @@ class EducationSectionForm extends Component {
       case "date":
         this.setState({
           item: {
+            id: this.state.item.id,
             school: this.state.item.school,
             subject: this.state.item.subject,
             date: e.target.value,
@@ -51,6 +56,7 @@ class EducationSectionForm extends Component {
     this.props.createItem(event, this.state.item);
     this.setState({
       item: {
+        id: uniqid(),
         school: "",
         subject: "",
         date: "",

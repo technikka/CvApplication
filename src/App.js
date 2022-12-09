@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./styles/app.css";
+import EducationSection from './components/EducationSection';
 
 class App extends Component {
   constructor() {
@@ -9,9 +10,10 @@ class App extends Component {
   render() {
     return(
       <div>
+        <h1>General Information</h1>
         <form>
           <fieldset className="general-info">
-            <legend>General Information</legend>
+            {/* <legend>General Information</legend> */}
             <label htmlFor="name">Name</label>
             <input type="text" id="name"/>
             <label htmlFor="email">Email</label>
@@ -20,7 +22,8 @@ class App extends Component {
             <input type="tel"/>
           </fieldset>
         </form>
-        {/* // EducationSection here
+        <EducationSection />
+        {/* 
         // ExperienceSection here
         // final submit button */}
       </div>

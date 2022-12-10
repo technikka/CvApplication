@@ -1,5 +1,7 @@
 import { Component } from "react";
 import uniqid from "uniqid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 
 class EducationSectionForm extends Component {
   constructor(props) {
@@ -52,7 +54,9 @@ class EducationSectionForm extends Component {
   };
 
   onSubmit(event) {
-    this.props.createItem(event, this.state.item);
+    const { createItem, toggleForm } = this.props;
+    createItem(event, this.state.item);
+    toggleForm();
     this.setState({
       item: {
         id: uniqid(),
@@ -75,6 +79,7 @@ class EducationSectionForm extends Component {
             id="school"
             value={item.school}
             onChange={this.handleChange}
+            required
           />
           <label htmlFor="subject">Course of Study</label>
           <input
@@ -82,6 +87,7 @@ class EducationSectionForm extends Component {
             id="subject"
             value={item.subject}
             onChange={this.handleChange}
+            required
           />
           <label htmlFor="date">Date Completed</label>
           <input
@@ -89,9 +95,10 @@ class EducationSectionForm extends Component {
             id="date"
             value={item.date}
             onChange={this.handleChange}
+            required
           />
         </fieldset>
-        <button type="submit">Add Experience</button>
+        <button type="submit" title="Add this Experience"><FontAwesomeIcon icon={faCircleCheck} /></button>
       </form>
     );
   }

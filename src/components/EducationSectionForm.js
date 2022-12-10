@@ -52,7 +52,6 @@ class EducationSectionForm extends Component {
   };
 
   onSubmit(event) {
-    console.log('in function')
     this.props.createItem(event, this.state.item);
     this.setState({
       item: {
@@ -62,7 +61,6 @@ class EducationSectionForm extends Component {
         date: "",
       },
     });
-    
   }
 
   render() {
@@ -72,26 +70,26 @@ class EducationSectionForm extends Component {
       <form onSubmit={(event) => this.onSubmit(event)}>
         <fieldset className="education-exp ">
           <label htmlFor="school">School</label>
-          <input 
-            type="text" 
-            id="school" 
+          <input
+            type="text"
+            id="school"
             value={item.school}
-            onChange={this.handleChange} 
+            onChange={this.handleChange}
           />
           <label htmlFor="subject">Course of Study</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             id="subject"
-            value={item.subject} 
-            onChange={this.handleChange} 
+            value={item.subject}
+            onChange={this.handleChange}
           />
           <label htmlFor="date">Date Completed</label>
-          <input 
-            type="date" 
+          <input
+            type="date"
             id="date"
-            value={item.date} 
-            onChange={this.handleChange} 
-            />
+            value={item.date}
+            onChange={this.handleChange}
+          />
         </fieldset>
         <button type="submit">Add Experience</button>
       </form>

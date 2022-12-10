@@ -1,5 +1,6 @@
 import { Component } from "react";
 import EducationSectionForm from "./EducationSectionForm";
+import EducationSectionItem from "./EducationSectionItem";
 
 class EducationSection extends Component {
   constructor() {
@@ -20,6 +21,11 @@ class EducationSection extends Component {
     });
   }
 
+  // TEMPORARY
+  // seed() {
+  //   const item1 = {school: "Mark Twain", }
+  // }
+
   createItem(e, newItem) {
     e.preventDefault();
     this.setState({
@@ -28,6 +34,7 @@ class EducationSection extends Component {
   }
 
   render() {
+    const { items } = this.state;
     return (
       <div>
         <h1>Educational Experience</h1>
@@ -35,9 +42,16 @@ class EducationSection extends Component {
         {this.state.formShowing === true && (
           <EducationSectionForm createItem={this.createItem} />
         )}
-      </div>
 
-      /* display all items */
+        <ul>
+          {items.map((item) => {
+            return (
+              /* need key specified here to clear unique key warning */
+              <EducationSectionItem item={item} key={item.id}/>
+            )
+          })}
+        </ul>
+      </div>
     );
   }
 }

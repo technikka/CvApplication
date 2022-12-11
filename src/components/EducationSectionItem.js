@@ -3,6 +3,8 @@ import { format } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
+// import EducationSectionForm from "./EducationSectionForm";
+
 class EducationSectionItem extends Component {
   constructor(props) {
     super(props);
@@ -16,12 +18,12 @@ class EducationSectionItem extends Component {
     const { item } = this.props;
     return (
       <div>
-        <FontAwesomeIcon icon={faPenToSquare} />
+        <FontAwesomeIcon icon={faPenToSquare} /* onClick={() => editItem(item)} */ />
         <FontAwesomeIcon icon={faTrashCan} />
         <li key={item.id}>
           {"Studied " + item.subject + " at " + item.school}
           <br />
-          {"Completed studies on " + this.formatDate(item.date)}
+          {"Completed on " + this.formatDate(item.date)}
           <br />
         </li>
       </div>

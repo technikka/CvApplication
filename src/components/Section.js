@@ -27,7 +27,6 @@ class Section extends Component {
       items: this.state.items.concat(newItem),
     });
   }
-
   render() {
     const { items } = this.state;
     const [ formComponent, itemComponent ] = this.props.children
@@ -48,7 +47,7 @@ class Section extends Component {
             return (
               React.createElement(itemComponent.type, {
                 item: item,
-                key: item.key
+                key: item.id,
               })
             );
           })}

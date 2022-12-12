@@ -13,6 +13,7 @@ class Section extends Component {
 
     this.toggleForm = this.toggleForm.bind(this);
     this.createItem = this.createItem.bind(this);
+    // this.editItem = this.editItem.bind(this);
   }
 
   toggleForm() {
@@ -27,33 +28,29 @@ class Section extends Component {
       items: this.state.items.concat(newItem),
     });
   }
+
+  /* editItem() {
+    // toggle form
+    this.toggleForm();
+    // set state to items values
+    //then call onItemChange
+  }
+ */
+
   render() {
-    const { items } = this.state;
-    const [ formComponent, itemComponent ] = this.props.children
     return (
       <div>
         <h1>{ this.props.title }</h1>
         <button title="Add Experience / Hide Form" onClick={this.toggleForm}>
           <FontAwesomeIcon icon={faSquarePlus} />
         </button>
-        {this.state.formShowing === true && (
-          React.createElement(formComponent.type, {
-            item: formComponent.props.item,
-            onItemChange: formComponent.props.onItemChange,
-            createItem: this.createItem, 
-            toggleForm: this.toggleForm
-          })
-        )}
-        <ul>
-          {items.map((item) => {
-            return (
-              React.createElement(itemComponent.type, {
-                item: item,
-                key: item.id,
-              })
-            );
-          })}
-        </ul>
+        {/* The specific section component */}
+        {React.createElement(this.props.children.type, {
+          formShowing: this.state.formShowing,
+          createItem: this.createItem,
+          toggleForm: this.toggleForm,
+          items: this.state.items,
+        })}
       </div>
     );
   }

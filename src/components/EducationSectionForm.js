@@ -45,9 +45,8 @@ class EducationSectionForm extends Component {
   };
 
   onSubmit(event) {
-    const { createItem, toggleForm } = this.props;
-    createItem(event, this.props.item);
-    toggleForm();
+    this.props.createItem(event, this.props.item);
+    this.props.toggleForm();
     this.props.onItemChange({
       item: {
         id: uniqid(),

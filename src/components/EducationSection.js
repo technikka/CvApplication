@@ -1,6 +1,5 @@
 import { Component } from "react";
 import uniqid from "uniqid";
-import Section from "./Section";
 import EducationSectionForm from "./EducationSectionForm";
 import EducationSectionItem from "./EducationSectionItem";
 
@@ -24,12 +23,29 @@ class EducationSection extends Component {
     this.setState(newState);
   }
 
+  displayItems() {
+    return (
+      <ul>
+        {this.props.items.map((item) => {
+          return <EducationSectionItem item={item} key={item.id} />;
+        })}
+      </ul>
+    );
+  }
+
   render() {
     return (
-      <Section title="Educational Experience">
-        <EducationSectionForm onItemChange={this.onItemChange} item={this.state.item} />
-        <EducationSectionItem />
-      </Section>
+      <div>
+        {this.props.formShowing === true && (
+          <EducationSectionForm
+            onItemChange={this.onItemChange}
+            item={this.state.item}
+            createItem={this.props.createItem}
+            toggleForm={this.props.toggleForm}
+          />
+        )}
+        {this.props.items.length > 0 && this.displayItems()}
+      </div>
     );
   }
 }

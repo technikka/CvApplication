@@ -18,7 +18,10 @@ class EducationSectionItem extends Component {
     const { item } = this.props;
     return (
       <div>
-        <FontAwesomeIcon icon={faPenToSquare} /* onClick={() => editItem(item)} */ />
+        <FontAwesomeIcon
+          icon={faPenToSquare}
+          onClick={() => this.props.editItem(item)}
+        />
         <FontAwesomeIcon icon={faTrashCan} />
         <li key={item.id}>
           {"Studied " + item.subject + " at " + item.school}

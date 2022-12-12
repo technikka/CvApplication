@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./styles/app.css";
 import EducationSection from "./components/EducationSection";
 import ExperienceSection from "./components/ExperienceSection";
+import Section from "./components/Section";
 
 class App extends Component {
   constructor() {
@@ -23,8 +24,13 @@ class App extends Component {
             <input type="tel" />
           </fieldset>
         </form>
-        <EducationSection />
-        <ExperienceSection />
+        <Section title="Educational Experience">
+          <EducationSection/>
+        </Section>
+
+        <Section title="Practical Experience">
+          <ExperienceSection />
+        </Section>
         {/* final submit button */}
       </div>
     );

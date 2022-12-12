@@ -21,7 +21,7 @@ class ExperienceSectionItem extends Component {
         <li key={item.id}>
           {item.position + " at " + item.company}
           <br />
-          {"Tasks: " + item.tasks }
+          {"Tasks: " + item.tasks}
           <br />
           {"Completed on " + this.formatDate(item.date)}
           <br />

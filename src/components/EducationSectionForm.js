@@ -6,45 +6,36 @@ import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 class EducationSectionForm extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      item: {
-        id: uniqid(),
-        school: "",
-        subject: "",
-        date: "",
-      },
-    };
   }
 
-  handleChange = (e) => {
+  handleInputChange = (e) => {
     switch (e.target.id) {
       case "school":
-        this.setState({
+        this.props.onItemChange({
           item: {
-            id: this.state.item.id,
+            id: this.props.item.id,
             school: e.target.value,
-            subject: this.state.item.subject,
-            date: this.state.item.date,
+            subject: this.props.item.subject,
+            date: this.props.item.date,
           },
         });
         break;
       case "subject":
-        this.setState({
+        this.props.onItemChange({
           item: {
-            id: this.state.item.id,
-            school: this.state.item.school,
+            id: this.props.item.id,
+            school: this.props.item.school,
             subject: e.target.value,
-            date: this.state.item.date,
+            date: this.props.item.date,
           },
         });
         break;
       case "date":
-        this.setState({
+        this.props.onItemChange({
           item: {
-            id: this.state.item.id,
-            school: this.state.item.school,
-            subject: this.state.item.subject,
+            id: this.props.item.id,
+            school: this.props.item.school,
+            subject: this.props.item.subject,
             date: e.target.value,
           },
         });
@@ -55,9 +46,9 @@ class EducationSectionForm extends Component {
 
   onSubmit(event) {
     const { createItem, toggleForm } = this.props;
-    createItem(event, this.state.item);
+    createItem(event, this.props.item);
     toggleForm();
-    this.setState({
+    this.props.onItemChange({
       item: {
         id: uniqid(),
         school: "",
@@ -68,8 +59,7 @@ class EducationSectionForm extends Component {
   }
 
   render() {
-    const { item } = this.state;
-
+    const { item } = this.props
     return (
       <form onSubmit={(event) => this.onSubmit(event)}>
         <fieldset className="education-exp ">
@@ -78,7 +68,7 @@ class EducationSectionForm extends Component {
             type="text"
             id="school"
             value={item.school}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
           <label htmlFor="subject">Course of Study</label>
@@ -86,7 +76,7 @@ class EducationSectionForm extends Component {
             type="text"
             id="subject"
             value={item.subject}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
           <label htmlFor="date">Date Completed</label>
@@ -94,7 +84,7 @@ class EducationSectionForm extends Component {
             type="date"
             id="date"
             value={item.date}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
         </fieldset>

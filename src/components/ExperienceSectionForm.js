@@ -6,60 +6,50 @@ import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 class ExperienceSectionForm extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      item: {
-        id: uniqid(),
-        company: "",
-        position: "",
-        tasks: "",
-        date: "",
-      },
-    };
   }
 
-  handleChange = (e) => {
+  handleInputChange= (e) => {
     switch (e.target.id) {
       case "company":
-        this.setState({
+        this.props.onItemChange({
           item: {
-            id: this.state.item.id,
+            id: this.props.item.id,
             company: e.target.value,
-            position: this.state.item.position,
-            tasks: this.state.item.tasks,
-            date: this.state.item.date,
+            position: this.props.item.position,
+            tasks: this.props.item.tasks,
+            date: this.props.item.date,
           },
         });
         break;
       case "position":
-        this.setState({
+        this.props.onItemChange({
           item: {
-            id: this.state.item.id,
-            company: this.state.item.company,
+            id: this.props.item.id,
+            company: this.props.item.company,
             position: e.target.value,
-            tasks: this.state.item.tasks,
-            date: this.state.item.date,
+            tasks: this.props.item.tasks,
+            date: this.props.item.date,
           },
         });
         break;
       case "tasks":
-        this.setState({
+        this.props.onItemChange({
           item: {
-            id: this.state.item.id,
-            company: this.state.item.company,
-            position: this.state.item.position,
+            id: this.props.item.id,
+            company: this.props.item.company,
+            position: this.props.item.position,
             tasks: e.target.value,
-            date: this.state.item.date,
+            date: this.props.item.date,
           },
         });
         break;
       case "date":
-        this.setState({
+        this.props.onItemChange({
           item: {
-            id: this.state.item.id,
-            company: this.state.item.company,
-            position: this.state.item.position,
-            tasks: this.state.item.tasks,
+            id: this.props.item.id,
+            company: this.props.item.company,
+            position: this.props.item.position,
+            tasks: this.props.item.tasks,
             date: e.target.value,
           },
         });
@@ -70,9 +60,9 @@ class ExperienceSectionForm extends Component {
 
   onSubmit(event) {
     const { createItem, toggleForm } = this.props;
-    createItem(event, this.state.item);
+    createItem(event, this.props.item);
     toggleForm();
-    this.setState({
+    this.props.onItemChange({
       item: {
         id: uniqid(),
         company: "",
@@ -84,7 +74,7 @@ class ExperienceSectionForm extends Component {
   }
 
   render() {
-    const { item } = this.state;
+    const { item } = this.props;
 
     return (
       <form onSubmit={(event) => this.onSubmit(event)}>
@@ -94,7 +84,7 @@ class ExperienceSectionForm extends Component {
             type="text"
             id="company"
             value={item.company}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
           <label htmlFor="position">Position</label>
@@ -102,7 +92,7 @@ class ExperienceSectionForm extends Component {
             type="text"
             id="position"
             value={item.position}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
           <label htmlFor="tasks">Description of Tasks</label>
@@ -110,7 +100,7 @@ class ExperienceSectionForm extends Component {
             type="text"
             id="tasks"
             value={item.tasks}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
           <label htmlFor="date">Date Completed</label>
@@ -118,7 +108,7 @@ class ExperienceSectionForm extends Component {
             type="date"
             id="date"
             value={item.date}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
         </fieldset>

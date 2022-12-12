@@ -38,6 +38,8 @@ class Section extends Component {
         </button>
         {this.state.formShowing === true && (
           React.createElement(formComponent.type, {
+            item: formComponent.props.item,
+            onItemChange: formComponent.props.onItemChange,
             createItem: this.createItem, 
             toggleForm: this.toggleForm
           })

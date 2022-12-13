@@ -13,7 +13,7 @@ class Section extends Component {
 
     this.toggleForm = this.toggleForm.bind(this);
     this.createItem = this.createItem.bind(this);
-    // this.editItem = this.editItem.bind(this);
+    this.editItems = this.editItems.bind(this);
   }
 
   toggleForm() {
@@ -22,25 +22,27 @@ class Section extends Component {
     });
   }
 
-  createItem(e, newItem) {
-    e.preventDefault();
+  createItem(newItem) {
     this.setState({
       items: this.state.items.concat(newItem),
     });
   }
 
-  /* editItem() {
-    // toggle form
-    this.toggleForm();
-    // set state to items values
-    //then call onItemChange
+  editItems(editedItem) {
+    this.setState({
+      items: this.state.items.map((item) => {
+        if (item.id === editedItem.id) {
+          item = editedItem;
+        }
+        return item;
+      }),
+    });
   }
- */
 
   render() {
     return (
       <div>
-        <h1>{ this.props.title }</h1>
+        <h1>{this.props.title}</h1>
         <button title="Add Experience / Hide Form" onClick={this.toggleForm}>
           <FontAwesomeIcon icon={faSquarePlus} />
         </button>
@@ -50,6 +52,7 @@ class Section extends Component {
           createItem: this.createItem,
           toggleForm: this.toggleForm,
           items: this.state.items,
+          editItems: this.editItems,
         })}
       </div>
     );

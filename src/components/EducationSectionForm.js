@@ -44,8 +44,8 @@ class EducationSectionForm extends Component {
     }
   };
 
-  onSubmit(event) {
-    this.props.createItem(event, this.props.item);
+  onSubmit() {
+    this.props.createItem(this.props.item);
     this.props.toggleForm();
     this.props.onItemChange({
       item: {
@@ -57,10 +57,42 @@ class EducationSectionForm extends Component {
     });
   }
 
+  onUpdate() {
+    this.props.toggleForm();
+    this.props.toggleisEditingItem();
+    this.props.editItems(this.props.item);
+    this.props.onItemChange({
+      item: {
+        id: uniqid(),
+        school: "",
+        subject: "",
+        date: "",
+      },
+    });
+  }
+
   render() {
-    const { item } = this.props
+    const { item } = this.props;
+
+    /* The submit button will either submit a new item or update item */
+    const btnTitle = () => {
+      if (this.props.isEditingItem === true) {
+        return "Update Experience";
+      }
+      return "Add this Experience";
+    };
+
     return (
-      <form onSubmit={(event) => this.onSubmit(event)}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (this.props.isEditingItem === false) {
+            this.onSubmit();
+          } else {
+            this.onUpdate();
+          }
+        }}
+      >
         <fieldset className="education-exp ">
           <label htmlFor="school">School</label>
           <input
@@ -87,7 +119,9 @@ class EducationSectionForm extends Component {
             required
           />
         </fieldset>
-        <button type="submit" title="Add this Experience"><FontAwesomeIcon icon={faCircleCheck} /></button>
+        <button type="submit" title={btnTitle()}>
+          <FontAwesomeIcon icon={faCircleCheck} />
+        </button>
       </form>
     );
   }

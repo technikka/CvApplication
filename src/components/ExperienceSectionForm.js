@@ -8,7 +8,7 @@ class ExperienceSectionForm extends Component {
     super(props);
   }
 
-  handleInputChange= (e) => {
+  handleInputChange = (e) => {
     switch (e.target.id) {
       case "company":
         this.props.onItemChange({
@@ -58,10 +58,24 @@ class ExperienceSectionForm extends Component {
     }
   };
 
-  onSubmit(event) {
-    const { createItem, toggleForm } = this.props;
-    createItem(event, this.props.item);
-    toggleForm();
+  onSubmit() {
+    this.props.createItem(this.props.item);
+    this.props.toggleForm();
+    this.props.onItemChange({
+      item: {
+        id: uniqid(),
+        company: "",
+        position: "",
+        tasks: "",
+        date: "",
+      },
+    });
+  }
+
+  onUpdate() {
+    this.props.toggleForm();
+    this.props.toggleisEditingItem();
+    this.props.editItems(this.props.item);
     this.props.onItemChange({
       item: {
         id: uniqid(),
@@ -76,8 +90,25 @@ class ExperienceSectionForm extends Component {
   render() {
     const { item } = this.props;
 
+    /* The submit button will either submit a new item or update item */
+    const btnTitle = () => {
+      if (this.props.isEditingItem === true) {
+        return "Update Experience";
+      }
+      return "Add this Experience";
+    };
+
     return (
-      <form onSubmit={(event) => this.onSubmit(event)}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (this.props.isEditingItem === false) {
+            this.onSubmit();
+          } else {
+            this.onUpdate();
+          }
+        }}
+      >
         <fieldset className="practical-exp">
           <label htmlFor="company">Company</label>
           <input
@@ -112,7 +143,9 @@ class ExperienceSectionForm extends Component {
             required
           />
         </fieldset>
-        <button type="submit" title="Add this Experience"><FontAwesomeIcon icon={faCircleCheck} /></button>
+        <button type="submit" title={btnTitle()}>
+          <FontAwesomeIcon icon={faCircleCheck} />
+        </button>
       </form>
     );
   }

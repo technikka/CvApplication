@@ -16,7 +16,10 @@ class ExperienceSectionItem extends Component {
     const { item } = this.props;
     return (
       <div>
-        <FontAwesomeIcon icon={faPenToSquare} />
+        <FontAwesomeIcon
+          icon={faPenToSquare}
+          onClick={() => this.props.editItem(item)}
+        />
         <FontAwesomeIcon icon={faTrashCan} />
         <li key={item.id}>
           {item.position + " at " + item.company}

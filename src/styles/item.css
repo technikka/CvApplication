@@ -1,7 +1,7 @@
 .icons {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(15, 1fr);
   justify-items: start;
   margin-bottom: 10px;
 }
@@ -22,7 +22,7 @@ ul > div {
   background-color: #ede9e6;
   padding: 10px;
   border-radius: 5px;
-  max-width: max-content;
+  width: 350px;
 }
 
 li {

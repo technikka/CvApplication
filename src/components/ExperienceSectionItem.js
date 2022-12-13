@@ -20,7 +20,10 @@ class ExperienceSectionItem extends Component {
           icon={faPenToSquare}
           onClick={() => this.props.editItem(item)}
         />
-        <FontAwesomeIcon icon={faTrashCan} />
+        <FontAwesomeIcon 
+          icon={faTrashCan}
+          onClick={() => this.props.deleteItem(item)} 
+        />
         <li key={item.id}>
           {item.position + " at " + item.company}
           <br />

@@ -54,6 +54,7 @@ class ExperienceSection extends Component {
               item={item}
               key={item.id}
               editItem={this.editItem}
+              deleteItem={this.props.deleteItem}
             />
           );
         })}

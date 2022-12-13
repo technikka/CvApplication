@@ -14,6 +14,7 @@ class Section extends Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.createItem = this.createItem.bind(this);
     this.editItems = this.editItems.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   toggleForm() {
@@ -39,6 +40,12 @@ class Section extends Component {
     });
   }
 
+  deleteItem(itemToDelete) {
+    this.setState({
+      items: this.state.items.filter((item) => item !== itemToDelete),
+    });
+  }
+
   render() {
     return (
       <div>
@@ -53,6 +60,7 @@ class Section extends Component {
           toggleForm: this.toggleForm,
           items: this.state.items,
           editItems: this.editItems,
+          deleteItem: this.deleteItem,
         })}
       </div>
     );

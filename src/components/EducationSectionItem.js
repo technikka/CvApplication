@@ -22,7 +22,10 @@ class EducationSectionItem extends Component {
           icon={faPenToSquare}
           onClick={() => this.props.editItem(item)}
         />
-        <FontAwesomeIcon icon={faTrashCan} />
+        <FontAwesomeIcon 
+          icon={faTrashCan}
+          onClick={() => this.props.deleteItem(item)} 
+        />
         <li key={item.id}>
           {"Studied " + item.subject + " at " + item.school}
           <br />

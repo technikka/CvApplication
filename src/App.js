@@ -15,7 +15,6 @@ class App extends Component {
         <h1>General Information</h1>
         <form>
           <fieldset className="general-info">
-            {/* <legend>General Information</legend> */}
             <label htmlFor="name">Name</label>
             <input type="text" id="name" />
             <label htmlFor="email">Email</label>
@@ -25,13 +24,22 @@ class App extends Component {
           </fieldset>
         </form>
         <Section title="Educational Experience">
-          <EducationSection/>
+          <EducationSection />
         </Section>
 
         <Section title="Practical Experience">
           <ExperienceSection />
         </Section>
-        {/* final submit button */}
+        <p>Submit the entire form only when finished adding all experience.</p>
+        <button
+          className="submit-cv"
+          type="submit"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          Submit CV
+        </button>
       </div>
     );
   }

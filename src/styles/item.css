@@ -1,0 +1,32 @@
+.icons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  justify-items: start;
+  margin-bottom: 10px;
+}
+
+
+.item-icon:hover {
+  cursor: pointer;
+}
+
+ul {
+  padding: 0;
+  display: grid;
+  justify-items: center;
+  grid-gap: 20px;
+}
+
+ul > div {
+  background-color: #ede9e6;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: max-content;
+}
+
+li {
+  list-style: none;
+  display: grid;
+  
+}

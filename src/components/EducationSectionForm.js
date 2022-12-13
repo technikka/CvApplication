@@ -118,10 +118,10 @@ class EducationSectionForm extends Component {
             onChange={this.handleInputChange}
             required
           />
+          <button className="checkmark-submit" type="submit" title={btnTitle()}>
+            <FontAwesomeIcon icon={faCircleCheck} />
+          </button>
         </fieldset>
-        <button type="submit" title={btnTitle()}>
-          <FontAwesomeIcon icon={faCircleCheck} />
-        </button>
       </form>
     );
   }

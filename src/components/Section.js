@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import "../styles/section.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 class Section extends Component {
   constructor(props) {
@@ -48,10 +49,10 @@ class Section extends Component {
 
   render() {
     return (
-      <div>
+      <div className="section">
         <h1>{this.props.title}</h1>
-        <button title="Add Experience / Hide Form" onClick={this.toggleForm}>
-          <FontAwesomeIcon icon={faSquarePlus} />
+        <button className="form-control-btn" title="Add Experience / Hide Form" onClick={this.toggleForm}>
+          <FontAwesomeIcon icon={faPlus} />
         </button>
         {/* The specific section component */}
         {React.createElement(this.props.children.type, {
@@ -62,6 +63,9 @@ class Section extends Component {
           editItems: this.editItems,
           deleteItem: this.deleteItem,
         })}
+        {this.state.items.length === 0 && (
+          <p>Click the button above to add experience to this field.</p>
+        )}
       </div>
     );
   }

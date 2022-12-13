@@ -2,27 +2,76 @@
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+#root > div {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+}
+
+#root > div > div {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+}
+
 h1 {
   font-size: larger;
+  width: max-content;
 }
 
-.general-info {
+fieldset {
   display: flex;
   flex-flow: column;
   align-content: center;
   gap: 5px;
+  width: 400px;
+  background-color: #e6eaed;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
 }
 
-.education-exp {
-  display: flex;
-  flex-flow: column;
-  align-content: center;
-  gap: 5px;
+fieldset button {
+  max-width: 50px;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  
 }
 
-.practical-exp {
-  display: flex;
-  flex-flow: column;
-  align-content: center;
-  gap: 5px;
+.checkmark-submit svg {
+  width: 30px;
+  height: 30px;
 }
+
+fieldset button:hover {
+  cursor: pointer;
+}
+
+.submit-cv {
+  background-color: #e6eaed;
+  /* width: 40px; */
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 15px;
+}
+
+.submit-cv:hover {
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+/* .form-control-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.form-control-btn:hover {
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+} */

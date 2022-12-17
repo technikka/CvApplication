@@ -1,84 +1,66 @@
-import { Component } from "react";
+import { useState } from "react";
 import uniqid from "uniqid";
 import EducationSectionForm from "./EducationSectionForm";
 import EducationSectionItem from "./EducationSectionItem";
 
-class EducationSection extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      item: {
-        id: uniqid(),
-        school: "",
-        subject: "",
-        date: "",
-      },
-      isEditingItem: false,
-    };
-
-    this.onItemChange = this.onItemChange.bind(this);
-    this.editItem = this.editItem.bind(this);
-    this.toggleisEditingItem = this.toggleisEditingItem.bind(this);
-  }
-
-  toggleisEditingItem() {
-    this.setState({ isEditingItem: !this.state.isEditingItem });
-  }
-
-  editItem(itemToEdit) {
-    this.onItemChange({
-      item: {
-        id: itemToEdit.id,
-        school: itemToEdit.school,
-        subject: itemToEdit.subject,
-        date: itemToEdit.date,
-      },
+const EducationSection = (props) => {
+  const [item, setItem] = useState({
+    id: uniqid(),
+    school: "",
+    subject: "",
+    date: "",
+  });
+  const [isEditingItem, setIsEditingItem] = useState(false);
+  const toggleisEditingItem = () => {
+    setIsEditingItem(!isEditingItem);
+  };
+  const onItemChange = (newState) => {
+    setItem(newState);
+  };
+  const editItem = (itemToEdit) => {
+    onItemChange({
+      id: itemToEdit.id,
+      school: itemToEdit.school,
+      subject: itemToEdit.subject,
+      date: itemToEdit.date,
     });
-    this.toggleisEditingItem();
-    this.props.toggleForm();
-  }
-
-  onItemChange(newState) {
-    this.setState(newState);
-  }
-
-  displayItems() {
+    toggleisEditingItem();
+    props.toggleForm();
+  };
+  const displayItems = () => {
     return (
       <ul>
-        {this.props.items.map((item) => {
+        {props.items.map((item) => {
           return (
             <EducationSectionItem
               item={item}
               key={item.id}
-              editItem={this.editItem}
-              deleteItem={this.props.deleteItem}
+              editItem={editItem}
+              deleteItem={props.deleteItem}
             />
           );
         })}
       </ul>
     );
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        {this.props.formShowing === true && (
-          <EducationSectionForm
-            onItemChange={this.onItemChange}
-            item={this.state.item}
-            createItem={this.props.createItem}
-            toggleForm={this.props.toggleForm}
-            isEditingItem={this.state.isEditingItem}
-            editItem={this.editItem}
-            toggleisEditingItem={this.toggleisEditingItem}
-            editItems={this.props.editItems}
-          />
-        )}
-        {this.props.items.length > 0 && this.displayItems()}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {props.formShowing === true && (
+        <EducationSectionForm
+          onItemChange={onItemChange}
+          item={item}
+          createItem={props.createItem}
+          toggleForm={props.toggleForm}
+          isEditingItem={isEditingItem}
+          editItem={editItem}
+          toggleisEditingItem={toggleisEditingItem}
+          editItems={props.editItems}
+        />
+      )}
+      {props.items.length > 0 && displayItems()}
+    </div>
+  );
+};
 
 export default EducationSection;

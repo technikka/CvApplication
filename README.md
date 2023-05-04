@@ -1,8 +1,22 @@
 # CV Application
 
-My first project to practice the basics of the React framework. The primary goal was to get comfortable with the new syntax and using props and state.
+A simple form to create a CV, my first project practicing the basics of React.
 
-The user can add relevant experience one item at a time, and edit/delete each item individually. This functionalty was a bit beyond where I currently am with learning the framework, so there are a lot of hacky solutions and redundant code which I will refactor for more practice later after learning more concepts of React. 
+### Accessing The App
+
+Check it out here: [CV Application](https://technikka.github.io/CvApplication/)
 
 
-<img src="/public/screenshot.png" alt="Screenshot of CV Application" title="Screenshot of CV Application">
+## Technologies Used
+
+* React 18.2.0
+* [Date-fns](https://github.com/date-fns/date-fns)
+
+
+## Description
+
+A very basic page to create a CV. It includes three sections: general information, educational experience, and practical experience. The user adds relevant experience one item at a time, with the option to edit or delete individual items.
+
+#### Screenshots
+
+<img src="/public/screenshot.png" alt="Screenshot of CV Application" title="Screenshot of CV Application" width="400px">
